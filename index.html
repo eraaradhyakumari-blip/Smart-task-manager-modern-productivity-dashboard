@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Task Manager</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <span class="logo-icon">✓</span>
+            <span>SmartTask</span>
+        </div>
+
+        <nav>
+            <button class="nav-item active" data-view="dashboard">
+                🏠 Dashboard
+            </button>
+
+            <button class="nav-item" data-view="all">
+                📋 All Tasks
+            </button>
+
+            <button class="nav-item" data-view="today">
+                📅 Today
+            </button>
+
+            <button class="nav-item" data-view="important">
+                ⭐ Important
+            </button>
+
+            <button class="nav-item" data-view="completed">
+                ✅ Completed
+            </button>
+
+            <button class="nav-item" data-view="trash">
+                🗑️ Trash
+            </button>
+        </nav>
+
+        <div class="quote-box">
+            <span>💡</span>
+            <p id="quote">
+                The secret of getting ahead is getting started.
+            </p>
+            <small>— Mark Twain</small>
+        </div>
+
+        <div class="sidebar-bottom">
+            <span>Made with ❤️</span>
+            <strong>SmartTask</strong>
+        </div>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main">
+
+        <!-- Top Header -->
+        <header class="topbar">
+
+            <div>
+                <p class="welcome-small" id="greeting">
+                    Good Morning!
+                </p>
+
+                <h1 id="pageTitle">
+                    My Dashboard
+                </h1>
+
+                <p class="subtitle">
+                    Stay organized. Stay productive.
+                </p>
+            </div>
+
+            <div class="top-actions">
+
+                <button id="themeBtn" class="icon-btn">
+                    🌙
+                </button>
+
+                <div class="avatar">
+                    AK
+                </div>
+
+            </div>
+
+        </header>
+
+        <!-- Dashboard -->
+        <section id="dashboardView">
+
+            <!-- Stats -->
+            <div class="stats-grid">
+
+                <div class="stat-card purple">
+                    <div class="stat-icon">📋</div>
+                    <div>
+                        <span>Total Tasks</span>
+                        <h2 id="totalTasks">0</h2>
+                    </div>
+                </div>
+
+                <div class="stat-card green">
+                    <div class="stat-icon">✅</div>
+                    <div>
+                        <span>Completed</span>
+                        <h2 id="completedTasks">0</h2>
+                    </div>
+                </div>
+
+                <div class="stat-card orange">
+                    <div class="stat-icon">⏳</div>
+                    <div>
+                        <span>Pending</span>
+                        <h2 id="pendingTasks">0</h2>
+                    </div>
+                </div>
+
+                <div class="stat-card pink">
+                    <div class="stat-icon">⭐</div>
+                    <div>
+                        <span>Important</span>
+                        <h2 id="importantTasks">0</h2>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Productivity -->
+            <div class="productivity-card">
+
+                <div class="productivity-header">
+                    <div>
+                        <h3>Today's Productivity</h3>
+                        <p>Keep going, you're doing great!</p>
+                    </div>
+
+                    <strong id="progressText">0%</strong>
+                </div>
+
+                <div class="progress-bar">
+                    <div id="progressFill"></div>
+                </div>
+
+            </div>
+
+            <!-- Add Task -->
+            <div class="add-task-card">
+
+                <input
+                    type="text"
+                    id="taskInput"
+                    placeholder="✨ What needs to be done?"
+                >
+
+                <select id="priorityInput">
+                    <option value="Low">🟢 Low</option>
+                    <option value="Medium" selected>🟡 Medium</option>
+                    <option value="High">🔴 High</option>
+                </select>
+
+                <input
+                    type="date"
+                    id="dateInput"
+                >
+
+                <button id="addTaskBtn">
+                    + Add Task
+                </button>
+
+            </div>
+
+            <!-- Task Controls -->
+            <div class="task-header">
+
+                <div>
+                    <h2>My Tasks</h2>
+                    <p>Manage your daily activities</p>
+                </div>
+
+                <div class="controls">
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="🔍 Search..."
+                    >
+
+                    <select id="filterInput">
+                        <option value="all">All Priority</option>
+                        <option value="High">High</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Low">Low</option>
+                    </select>
+
+                    <select id="sortInput">
+                        <option value="latest">Latest</option>
+                        <option value="oldest">Oldest</option>
+                        <option value="priority">Priority</option>
+                    </select>
+
+                </div>
+
+            </div>
+
+            <!-- Tasks -->
+            <div id="taskList" class="task-list"></div>
+
+            <div id="emptyState" class="empty-state">
+                <div>📝</div>
+                <h3>No tasks found</h3>
+                <p>Add a task and start being productive!</p>
+            </div>
+
+        </section>
+
+        <!-- Other Views -->
+        <section id="otherView" class="hidden">
+
+            <div class="task-header">
+
+                <div>
+                    <h2 id="otherTitle">Tasks</h2>
+                    <p id="otherSubtitle">
+                        Manage your tasks
+                    </p>
+                </div>
+
+            </div>
+
+            <div id="otherTaskList" class="task-list"></div>
+
+            <div id="otherEmptyState" class="empty-state">
+                <div>📭</div>
+                <h3>Nothing here</h3>
+                <p>This section is currently empty.</p>
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<!-- Toast -->
+<div id="toast" class="toast">
+    Task updated successfully!
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
